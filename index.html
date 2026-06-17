@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>沙漠坦克对轰</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hud">
+        <section class="team-panel team-red" aria-label="红方状态">
+          <div class="team-title">
+            <span class="team-dot"></span>
+            <strong>红方坦克</strong>
+          </div>
+          <div class="health-track" aria-hidden="true">
+            <span id="redHealthFill"></span>
+          </div>
+          <div class="readout">
+            <span id="redHits">命中 0/15</span>
+            <span id="redAmmo">机枪 30/30</span>
+          </div>
+        </section>
+
+        <section class="mission-panel" aria-label="战斗控制">
+          <button id="startButton" class="primary-action" type="button">开始战斗</button>
+          <button id="resetButton" class="secondary-action" type="button">重新开局</button>
+          <div id="stormStatus" class="storm-status">沙尘暴 10 秒后</div>
+        </section>
+
+        <section class="team-panel team-blue" aria-label="蓝方状态">
+          <div class="team-title">
+            <span class="team-dot"></span>
+            <strong>蓝方坦克</strong>
+          </div>
+          <div class="health-track" aria-hidden="true">
+            <span id="blueHealthFill"></span>
+          </div>
+          <div class="readout">
+            <span id="blueHits">命中 0/15</span>
+            <span id="blueAmmo">机枪 30/30</span>
+          </div>
+        </section>
+      </header>
+
+      <main class="battle-layout">
+        <section class="arena-panel" aria-label="主战场">
+          <canvas id="battlefield"></canvas>
+          <div id="roundBanner" class="round-banner">红方 VS 蓝方</div>
+        </section>
+
+        <section class="cockpit-row" aria-label="坦克驾驶舱视角">
+          <article class="cockpit-panel red-cockpit">
+            <div class="cockpit-heading">
+              <strong>红方驾驶舱</strong>
+              <span id="redAngle">炮管 35°</span>
+            </div>
+            <canvas id="redCockpit"></canvas>
+            <div class="control-pad" data-team="red">
+              <button type="button" data-action="left" aria-label="红方后退">A</button>
+              <button type="button" data-action="right" aria-label="红方前进">D</button>
+              <button type="button" data-action="barrelUp" aria-label="红方炮管上调">炮管↑</button>
+              <button type="button" data-action="barrelDown" aria-label="红方炮管下调">炮管↓</button>
+              <button type="button" class="fire-shell" data-action="shell" aria-label="红方炮击">炮击</button>
+              <button type="button" class="fire-mg" data-action="mg" aria-label="红方机枪">机枪</button>
+            </div>
+          </article>
+
+          <article class="cockpit-panel blue-cockpit">
+            <div class="cockpit-heading">
+              <strong>蓝方驾驶舱</strong>
+              <span id="blueAngle">炮管 35°</span>
+            </div>
+            <canvas id="blueCockpit"></canvas>
+            <div class="control-pad" data-team="blue">
+              <button type="button" data-action="left" aria-label="蓝方前进">←</button>
+              <button type="button" data-action="right" aria-label="蓝方后退">→</button>
+              <button type="button" data-action="barrelUp" aria-label="蓝方炮管上调">炮管↑</button>
+              <button type="button" data-action="barrelDown" aria-label="蓝方炮管下调">炮管↓</button>
+              <button type="button" class="fire-shell" data-action="shell" aria-label="蓝方炮击">炮击</button>
+              <button type="button" class="fire-mg" data-action="mg" aria-label="蓝方机枪">机枪</button>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

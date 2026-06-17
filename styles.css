@@ -1,0 +1,344 @@
+:root {
+  color-scheme: dark;
+  --sand: #e0b56c;
+  --sand-deep: #b7803e;
+  --panel: #182027;
+  --panel-soft: #22313a;
+  --steel: #5d6c70;
+  --cream: #ffe0a2;
+  --red: #e44a3f;
+  --blue: #3a8bea;
+  --green: #77c76b;
+  --ink: #f7f1dc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background:
+    linear-gradient(180deg, rgba(16, 26, 31, 0.94), rgba(45, 45, 36, 0.86)),
+    radial-gradient(circle at 18% 8%, rgba(255, 214, 130, 0.22), transparent 34%),
+    #10191f;
+  color: var(--ink);
+  font-family:
+    Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+button {
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(260px, 0.85fr) minmax(220px, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.team-panel,
+.mission-panel {
+  min-width: 0;
+  border: 1px solid rgba(255, 231, 166, 0.2);
+  border-radius: 8px;
+  background: rgba(18, 26, 31, 0.86);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.team-panel {
+  padding: 12px;
+}
+
+.mission-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-content: center;
+  padding: 12px;
+}
+
+.team-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.team-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.team-red .team-dot {
+  background: var(--red);
+}
+
+.team-blue .team-dot {
+  background: var(--blue);
+}
+
+.health-track {
+  position: relative;
+  height: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.health-track span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: width 180ms ease;
+}
+
+.team-red .health-track span {
+  background: linear-gradient(90deg, #bd2f29, #ff6b55, #ffc08e);
+}
+
+.team-blue .health-track span {
+  background: linear-gradient(90deg, #246bd1, #58a8ff, #a9e3ff);
+}
+
+.readout {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  color: rgba(255, 241, 210, 0.82);
+  font-size: 0.9rem;
+}
+
+.primary-action,
+.secondary-action {
+  min-height: 42px;
+  border-radius: 7px;
+  transition:
+    transform 120ms ease,
+    filter 120ms ease,
+    background 120ms ease;
+}
+
+.primary-action {
+  background: #e7a931;
+  color: #172129;
+  font-weight: 800;
+}
+
+.secondary-action {
+  background: #2d434a;
+  color: #f5e9c9;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.primary-action:hover,
+.secondary-action:hover,
+.control-pad button:hover {
+  filter: brightness(1.08);
+}
+
+.primary-action:active,
+.secondary-action:active,
+.control-pad button:active,
+.control-pad button.is-held {
+  transform: translateY(1px) scale(0.98);
+}
+
+.storm-status {
+  grid-column: 1 / -1;
+  min-height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: rgba(199, 141, 64, 0.2);
+  color: #ffe3aa;
+  font-size: 0.9rem;
+}
+
+.storm-status.is-active {
+  background: rgba(224, 166, 83, 0.36);
+  color: #fff5d8;
+}
+
+.battle-layout {
+  display: grid;
+  gap: 12px;
+}
+
+.arena-panel {
+  position: relative;
+  min-height: 410px;
+  height: min(58vh, 650px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 232, 174, 0.28);
+  border-radius: 8px;
+  background: #79c2dd;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 22px 60px rgba(0, 0, 0, 0.34);
+}
+
+#battlefield {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#redCockpit,
+#blueCockpit {
+  display: block;
+  width: 100%;
+}
+
+.round-banner {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  padding: 9px 16px;
+  border-radius: 7px;
+  background: rgba(13, 21, 24, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff1c7;
+  font-weight: 800;
+  text-align: center;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.round-banner.is-hidden {
+  opacity: 0;
+  transform: translate(-50%, -8px);
+}
+
+.cockpit-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cockpit-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 232, 174, 0.24);
+  border-radius: 8px;
+  background: rgba(16, 23, 27, 0.92);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+}
+
+.cockpit-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffedbf;
+}
+
+.cockpit-heading span {
+  color: rgba(255, 237, 191, 0.76);
+}
+
+.cockpit-panel canvas {
+  height: 230px;
+  background: #121a1d;
+}
+
+.control-pad {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.control-pad button {
+  min-height: 42px;
+  border-radius: 7px;
+  background: #2b3d43;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff4d3;
+  font-size: 0.95rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.red-cockpit .control-pad button {
+  border-color: rgba(228, 74, 63, 0.32);
+}
+
+.blue-cockpit .control-pad button {
+  border-color: rgba(58, 139, 234, 0.32);
+}
+
+.control-pad .fire-shell {
+  background: #a85228;
+}
+
+.control-pad .fire-mg {
+  background: #42664b;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 10px;
+  }
+
+  .hud {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-panel {
+    order: -1;
+  }
+
+  .arena-panel {
+    height: 48vh;
+    min-height: 340px;
+  }
+
+  .cockpit-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .mission-panel,
+  .control-pad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cockpit-panel canvas {
+    height: 210px;
+  }
+
+  .readout {
+    flex-wrap: wrap;
+  }
+}
