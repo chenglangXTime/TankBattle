@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>沙漠坦克对轰</title>
+    <title>TankBattle 坦克大战</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -12,7 +12,7 @@
         <section class="team-panel team-red" aria-label="红方状态">
           <div class="team-title">
             <span class="team-dot"></span>
-            <strong>红方坦克</strong>
+            <strong>红方虎式</strong>
           </div>
           <div class="health-track" aria-hidden="true">
             <span id="redHealthFill"></span>
@@ -21,18 +21,35 @@
             <span id="redHits">命中 0/15</span>
             <span id="redAmmo">机枪 30/30</span>
           </div>
+          <div class="score-row">
+            <span id="redScore">积分 0</span>
+            <span id="redGearName">装备 标准</span>
+          </div>
+          <div class="gear-row" data-team="red" aria-label="红方装备">
+            <button type="button" data-gear="standard">标准</button>
+            <button type="button" data-gear="armor">装甲</button>
+            <button type="button" data-gear="scope">瞄具</button>
+            <button type="button" data-gear="rapid">速射</button>
+          </div>
         </section>
 
         <section class="mission-panel" aria-label="战斗控制">
           <button id="startButton" class="primary-action" type="button">开始战斗</button>
           <button id="resetButton" class="secondary-action" type="button">重新开局</button>
+          <div class="scene-tabs" aria-label="实战场景">
+            <button type="button" data-scene="desert">沙漠</button>
+            <button type="button" data-scene="grass">草地</button>
+            <button type="button" data-scene="jungle">丛林</button>
+            <button type="button" data-scene="prairie">草原</button>
+            <button type="button" data-scene="wasteland">荒漠</button>
+          </div>
           <div id="stormStatus" class="storm-status">沙尘暴 10 秒后</div>
         </section>
 
         <section class="team-panel team-blue" aria-label="蓝方状态">
           <div class="team-title">
             <span class="team-dot"></span>
-            <strong>蓝方坦克</strong>
+            <strong>蓝方豹式</strong>
           </div>
           <div class="health-track" aria-hidden="true">
             <span id="blueHealthFill"></span>
@@ -40,6 +57,16 @@
           <div class="readout">
             <span id="blueHits">命中 0/15</span>
             <span id="blueAmmo">机枪 30/30</span>
+          </div>
+          <div class="score-row">
+            <span id="blueScore">积分 0</span>
+            <span id="blueGearName">装备 标准</span>
+          </div>
+          <div class="gear-row" data-team="blue" aria-label="蓝方装备">
+            <button type="button" data-gear="standard">标准</button>
+            <button type="button" data-gear="armor">装甲</button>
+            <button type="button" data-gear="scope">瞄具</button>
+            <button type="button" data-gear="rapid">速射</button>
           </div>
         </section>
       </header>
@@ -53,7 +80,7 @@
         <section class="cockpit-row" aria-label="坦克驾驶舱视角">
           <article class="cockpit-panel red-cockpit">
             <div class="cockpit-heading">
-              <strong>红方驾驶舱</strong>
+              <strong>红方虎式驾驶舱</strong>
               <span id="redAngle">炮管 35°</span>
             </div>
             <canvas id="redCockpit"></canvas>
@@ -62,6 +89,8 @@
               <button type="button" data-action="right" aria-label="红方前进">D</button>
               <button type="button" data-action="barrelUp" aria-label="红方炮管上调">炮管↑</button>
               <button type="button" data-action="barrelDown" aria-label="红方炮管下调">炮管↓</button>
+              <button type="button" data-action="mgUp" aria-label="红方机枪上调">机枪↑</button>
+              <button type="button" data-action="mgDown" aria-label="红方机枪下调">机枪↓</button>
               <button type="button" class="fire-shell" data-action="shell" aria-label="红方炮击">炮击</button>
               <button type="button" class="fire-mg" data-action="mg" aria-label="红方机枪">机枪</button>
             </div>
@@ -69,7 +98,7 @@
 
           <article class="cockpit-panel blue-cockpit">
             <div class="cockpit-heading">
-              <strong>蓝方驾驶舱</strong>
+              <strong>蓝方豹式驾驶舱</strong>
               <span id="blueAngle">炮管 35°</span>
             </div>
             <canvas id="blueCockpit"></canvas>
@@ -78,6 +107,8 @@
               <button type="button" data-action="right" aria-label="蓝方后退">→</button>
               <button type="button" data-action="barrelUp" aria-label="蓝方炮管上调">炮管↑</button>
               <button type="button" data-action="barrelDown" aria-label="蓝方炮管下调">炮管↓</button>
+              <button type="button" data-action="mgUp" aria-label="蓝方机枪上调">机枪↑</button>
+              <button type="button" data-action="mgDown" aria-label="蓝方机枪下调">机枪↓</button>
               <button type="button" class="fire-shell" data-action="shell" aria-label="蓝方炮击">炮击</button>
               <button type="button" class="fire-mg" data-action="mg" aria-label="蓝方机枪">机枪</button>
             </div>

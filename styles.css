@@ -66,7 +66,7 @@ button {
 }
 
 .team-panel {
-  padding: 12px;
+  padding: 10px 12px;
 }
 
 .mission-panel {
@@ -128,9 +128,68 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 8px;
+  margin-top: 7px;
   color: rgba(255, 241, 210, 0.82);
   font-size: 0.9rem;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 7px;
+  color: #ffe3aa;
+  font-size: 0.86rem;
+}
+
+.gear-row,
+.scene-tabs {
+  display: grid;
+  gap: 6px;
+}
+
+.gear-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 8px;
+}
+
+.scene-tabs {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.gear-row button,
+.scene-tabs button {
+  min-height: 30px;
+  border-radius: 6px;
+  background: rgba(55, 74, 79, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffefc2;
+  font-size: 0.8rem;
+  font-weight: 750;
+  transition:
+    transform 120ms ease,
+    filter 120ms ease,
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.gear-row button.is-active,
+.scene-tabs button.is-active {
+  background: #d99b36;
+  border-color: rgba(255, 243, 196, 0.72);
+  color: #172129;
+}
+
+.gear-row button.is-locked {
+  cursor: not-allowed;
+  color: rgba(255, 241, 210, 0.4);
+  background: rgba(31, 42, 46, 0.72);
+}
+
+.gear-row button:hover,
+.scene-tabs button:hover {
+  filter: brightness(1.08);
 }
 
 .primary-action,
@@ -182,6 +241,22 @@ button {
 .storm-status.is-active {
   background: rgba(224, 166, 83, 0.36);
   color: #fff5d8;
+}
+
+.storm-status.weather-rain {
+  background: rgba(64, 126, 155, 0.28);
+}
+
+.storm-status.weather-fog {
+  background: rgba(158, 179, 156, 0.24);
+}
+
+.storm-status.weather-wind {
+  background: rgba(165, 199, 111, 0.24);
+}
+
+.storm-status.weather-heat {
+  background: rgba(206, 114, 60, 0.26);
 }
 
 .battle-layout {
@@ -273,7 +348,7 @@ button {
 
 .control-pad {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 8px;
   padding: 10px;
 }
@@ -331,6 +406,14 @@ button {
 @media (max-width: 560px) {
   .mission-panel,
   .control-pad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scene-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gear-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
